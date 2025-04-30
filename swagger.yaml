@@ -4,7 +4,8 @@ info:
   description: Contains all available API endpoints in this codebase
   version: '1.0.0'
   termsOfService: 'http://swagger.io/terms/'
-host: localhost:3001
+# host: localhost:3001
+host: ${HOST_OR_RENDER_URL}
 basePath: /api/v1
 schemes:
   - http

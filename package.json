@@ -8,6 +8,7 @@
   "license": "",
   "main": "index.js",
   "dependencies": {
+    "@vitejs/plugin-react": "^4.4.1",
     "axios": "^0.19.2",
     "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
@@ -18,10 +19,14 @@
     "swagger-ui-express": "^4.1.4",
     "yamljs": "^0.3.0"
   },
+  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
     "dev:server": "nodemon ./server/server.js",
     "populate-db": "node ./server/scripts/populateDatabase.js",
-    "server": "node ./server/server.js"
+    "server": "node ./server/server.js",
+    "start": "node ./server/server.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
