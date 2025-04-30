@@ -29,6 +29,12 @@ app.use('/api/v1/user', require('./routes/userRoutes'))
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 // }
 
+// Modifier swaggerDocs avant de le passer à Swagger UI
+if (process.env.NODE_ENV === 'production') {
+  swaggerDocs.host = 'https://project-10-bank-api.onrender.com/';
+  swaggerDocs.schemes = ['https'];
+}
+
 app.get('/', (req, res, next) => {
   res.send('Hello from my Express server v2!')
 })
