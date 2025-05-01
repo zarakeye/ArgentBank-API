@@ -1,15 +1,18 @@
 services:
   - type: web
     name: argentBank-backend
+    env: node
+    plan: free
+    branch: master
+    buildCommand: npm install
+    startCommand: npm start
     envVars:
-      - key: NODE
-        value: node
-      - key: PORT
-        value: 10000
+      # - key: PORT
+      #   value: 10000
       - key: NODE_ENV
         value: production
-    plan: free
-    
-build:
-  npmInstall:
-    cacheVersion: v1
+      - key: MONGODB_URI
+        sync: false  
+# build:
+#   npmInstall:
+#     cacheVersion: v1
