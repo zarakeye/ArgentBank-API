@@ -102,7 +102,7 @@ if (process.env.NODE_ENV === 'production') {
 app.listen(PORT, () => {
   const serverUrl = process.env.NODE_ENV === 'production' 
     ? `https://project-10-bank-api.onrender.com` 
-    : `http://localhost:3001`;
+    : `http://localhost:${PORT}`;
   
   console.log(`Server listening on port ${PORT}`);
   console.log(`Server URL: ${serverUrl}`);
