@@ -11,8 +11,8 @@ services:
       #   value: 10000
       - key: NODE_ENV
         value: production
-      - key: MONGODB_URI
-        sync: false  
+      # - key: MONGODB_URI
+      #   sync: false  
 # build:
 #   npmInstall:
 #     cacheVersion: v1
