@@ -3,7 +3,7 @@ const dotEnv = require('dotenv')
 const cors = require('cors')
 const swaggerUi = require('swagger-ui-express')
 const yaml = require('yamljs')
-const swaggerDocs = yaml.load('../swagger.yaml')
+const swaggerDocs = yaml.load('./swagger.yaml')
 const dbConnection = require('./database/connection')
 
 // Fonction pour déterminer si on est en production
