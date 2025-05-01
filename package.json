@@ -25,7 +25,7 @@
     "dev": "nodemon ./server/server.js",
     "populate-db": "node ./server/scripts/populateDatabase.js",
     "server": "node ./server/server.js",
-    "start": "node ./server/server.js"
+    "build": "node ./server/server.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
