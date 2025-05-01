@@ -6,6 +6,9 @@ const yaml = require('yamljs')
 const swaggerDocs = yaml.load('./swagger.yaml')
 const dbConnection = require('./database/connection')
 
+// Fonction pour déterminer si on est en production
+const isProduction = () => process.env.NODE_ENV === 'production';
+
 dotEnv.config()
 
 // Rediriger HTTP vers HTTPS en production
@@ -23,9 +26,6 @@ const PORT = process.env.PORT || 3001
 
 // Connect to the database
 dbConnection()
-
-// Fonction pour déterminer si on est en production
-const isProduction = () => process.env.NODE_ENV === 'production';
 
 const corsOptions = {
   origin: '*',
