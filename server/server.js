@@ -52,6 +52,11 @@ const swaggerUiOptions = {
   swaggerUrl: '/generated-swagger.json'
 };
 
+// Servir le fichier swagger généré
+app.get('/generated-swagger.json', (req, res) => {
+  res.sendFile(swaggerOutputPath);
+});
+
 // API Documentation
 // if (process.env.NODE_ENV !== 'production') {
   // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs, swaggerUiOptions));
@@ -60,10 +65,6 @@ const swaggerUiOptions = {
 
 // Handle custom routes
 app.use('/api/v1/user', require('./routes/userRoutes'))
-
-// app.get('/', (req, res, next) => {
-//   res.send('Hello from my Express server v2!')
-// })
 
 // Route de base
 app.get('/', (req, res, next) => {
@@ -83,16 +84,6 @@ app.get('/', (req, res, next) => {
 });
 
 // Rediriger HTTP vers HTTPS en production
-// if (process.env.NODE_ENV === 'production') {
-//   app.use((req, res, next) => {
-//     if (req.headers['x-forwarded-proto'] !== 'https') {
-//       return res.redirect(`https://${req.headers.host}${req.url}`);
-//     }
-//     next();
-//   });
-// }
-
-// Rediriger HTTP vers HTTPS en production
 if (isProduction()) {
   app.use((req, res, next) => {
     if (req.headers['x-forwarded-proto'] !== 'https') {
@@ -104,16 +95,6 @@ if (isProduction()) {
 
 // Endpoint de diagnostic (uniquement en dev)
 if (!isProduction()) {
-  // app.get('/env-check', (req, res) => {
-  //   res.json({
-  //     environment: process.env.NODE_ENV || 'development',
-  //     port: PORT,
-  //     host: req.headers.host,
-  //     protocol: req.protocol,
-  //     isProduction: isProduction()
-  //   });
-  // });
-
   app.use((req, res, next) => {
     console.log(`${req.method} ${req.url}`);
     next();
@@ -131,16 +112,3 @@ app.listen(PORT, () => {
   console.log(`Swagger schemes: ${swaggerDocs.schemes}`)
   console.log(`Swagger documentation: ${serverUrl}/api-docs`);
 })
-
-// // Middleware pour journaliser les requêtes en développement
-// if (process.env.NODE_ENV !== 'production') {
-//   app.use((req, res, next) => {
-//     console.log(`${req.method} ${req.url}`);
-//     next();
-//   });
-// }
-
-// app.listen(PORT, () => {
-//   console.log(`Server listening on ${process.env.NODE_ENV === 'production' ? 'https' : 'http'}://localhost:${PORT}`)
-//   console.log(`Swagger documentation available at ${process.env.NODE_ENV === 'production' ? 'https' : 'http'}://localhost:${PORT}/api-docs`);
-// })
