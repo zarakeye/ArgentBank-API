@@ -8,6 +8,16 @@ const dbConnection = require('./database/connection')
 
 dotEnv.config()
 
+// Rediriger HTTP vers HTTPS en production
+if (isProduction()) {
+  app.use((req, res, next) => {
+    if (req.headers['x-forwarded-proto'] !== 'https') {
+      return res.redirect(`https://${req.headers.host}${req.url}`);
+    }
+    next();
+  });
+}
+
 const app = express()
 const PORT = process.env.PORT || 3001
 
@@ -41,11 +51,6 @@ if (isProduction()) {
   swaggerDocs.schemes = ['http'];
 }
 
-// Enregistrer temporairement la spécification modifiée dans un fichier pour Swagger UI
-// Cette étape est cruciale pour que Swagger UI utilise la bonne URL
-const swaggerOutputPath = path.join(__dirname, 'generated-swagger.json');
-fs.writeFileSync(swaggerOutputPath, JSON.stringify(swaggerDocs, null, 2));
-
 // Configuration des options Swagger UI
 const swaggerUiOptions = {
   explorer: true,
@@ -60,7 +65,7 @@ app.get('/generated-swagger.json', (req, res) => {
 // API Documentation
 // if (process.env.NODE_ENV !== 'production') {
   // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs, swaggerUiOptions));
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(null, swaggerUiOptions));
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs, { explorer: true }));
 // }
 
 // Handle custom routes
@@ -82,16 +87,6 @@ app.get('/', (req, res, next) => {
     </html>
   `);
 });
-
-// Rediriger HTTP vers HTTPS en production
-if (isProduction()) {
-  app.use((req, res, next) => {
-    if (req.headers['x-forwarded-proto'] !== 'https') {
-      return res.redirect(`https://${req.headers.host}${req.url}`);
-    }
-    next();
-  });
-}
 
 // Endpoint de diagnostic (uniquement en dev)
 if (!isProduction()) {
