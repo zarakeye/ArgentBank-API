@@ -5,7 +5,7 @@ services:
       - key: NODE
         value: node
       - key: PORT
-        value: 10000
+        value: 3001
       - key: NODE_ENV
         value: production
     plan: free
