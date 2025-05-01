@@ -11,6 +11,9 @@ const isProduction = () => process.env.NODE_ENV === 'production';
 
 dotEnv.config()
 
+const app = express()
+const PORT = process.env.PORT || 3001
+
 // Rediriger HTTP vers HTTPS en production
 if (isProduction()) {
   app.use((req, res, next) => {
@@ -20,9 +23,6 @@ if (isProduction()) {
     next();
   });
 }
-
-const app = express()
-const PORT = process.env.PORT || 3001
 
 // Connect to the database
 dbConnection()
