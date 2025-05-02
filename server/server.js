@@ -41,32 +41,6 @@ app.use(cors(corsOptions))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// // Définir dynamiquement l'hôte et le schéma dans la spécification Swagger
-// // IMPORTANT: Cette configuration doit être faite avant d'utiliser swaggerDocs
-// if (isProduction()) {
-//   swaggerDocs.host = 'project-10-bank-api.onrender.com';
-//   swaggerDocs.schemes = ['https'];
-// } else {
-//   swaggerDocs.host = `localhost:${PORT}`;
-//   swaggerDocs.schemes = ['http'];
-// }
-
-// // Configuration des options Swagger UI
-// const swaggerUiOptions = {
-//   explorer: true,
-//   swaggerUrl: '/generated-swagger.json'
-// };
-
-// // Servir le fichier swagger généré
-// app.get('/generated-swagger.json', (req, res) => {
-//   res.sendFile(swaggerOutputPath);
-// });
-
-// // API Documentation
-// // if (process.env.NODE_ENV !== 'production') {
-//   // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs, swaggerUiOptions));
-//   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs, { explorer: true }));
-// // }
 
 // Charger Swagger YAML en toute sécurité
 let swaggerDocs;
@@ -146,10 +120,4 @@ app.listen(PORT, () => {
     : `http://localhost:${PORT}`;
 
   console.log(`✅ Server running at: ${serverUrl}`);  
-  
-  // console.log(`Server listening on port ${PORT}`);
-  // console.log(`Server URL: ${serverUrl}`);
-  // console.log(`Swagger host: ${swaggerDocs.host}`);
-  // console.log(`Swagger schemes: ${swaggerDocs.schemes}`)
-  // console.log(`Swagger documentation: ${serverUrl}/api-docs`);
 })

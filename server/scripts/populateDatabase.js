@@ -1,6 +1,8 @@
-const axios = require('axios')
-const signupApi = 'http://localhost:3001/api/v1/user/signup'
 
+
+const axios = require('axios')
+// const signupApi = process.env.NODE_ENV === 'production' ? 'https://project-10-bank-api.onrender.com/api/v1/user/signup' : 'http://localhost:3001/api/v1/user/signup'
+const signupApi = 'https://project-10-bank-api.onrender.com/api/v1/user/signup'
 const users = [
   {
     firstName: 'Tony',

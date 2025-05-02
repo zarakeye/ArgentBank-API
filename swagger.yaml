@@ -10,6 +10,12 @@ basePath: /api/v1
 schemes:
   - http
   - https
+
+servers:
+  - url: https://project-10-bank-api.onrender.com
+    description: Production Server
+  - url: http://localhost:3001
+    description: Development Server
 paths:
   /user/login:
     post:
