@@ -11,6 +11,14 @@ schemes:
   - http
   - https
 
+
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+    description: "Enter your token in the format: Bearer <token>"
+
 security:
   - Bearer: []
 
@@ -71,12 +79,6 @@ paths:
         - User Module
       summary: User Profile API
       description: API for fetching a user profile
-      # parameters:
-      #   - in: header
-      #     name: Authorization
-      #     description: Attach Bearer JWT token
-      #     required: true
-      #     type: string
       produces:
         - application/json
       responses:
@@ -96,11 +98,6 @@ paths:
       summary: User Profile API
       description: API for updating a user profile
       parameters:
-        # - in: header
-        #   name: Authorization
-        #   description: Attach Bearer JWT token
-        #   required: true
-        #   type: string
         - in: body
           name: body
           description: Update user profile attributes
@@ -118,11 +115,6 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-securityDefinitions:
-  Bearer:
-    type: apiKey
-    name: Authorization
-    in: header
 definitions:
   User:
     properties:
