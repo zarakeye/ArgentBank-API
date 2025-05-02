@@ -5,17 +5,12 @@ info:
   version: '1.0.0'
   termsOfService: 'https://swagger.io/terms/'
 # host: localhost:3001
-# host: ${HOST_OR_RENDER_URL}
+host: project-10-bank-api.onrender.com
 basePath: /api/v1
 schemes:
   - http
   - https
 
-servers:
-  - url: https://project-10-bank-api.onrender.com
-    description: Production Server
-  - url: http://localhost:3001
-    description: Development Server
 paths:
   /user/login:
     post:
@@ -78,6 +73,7 @@ paths:
           name: Authorization
           description: Attach Bearer JWT token
           required: true
+          type: string
       produces:
         - application/json
       responses:
@@ -101,6 +97,7 @@ paths:
           name: Authorization
           description: Attach Bearer JWT token
           required: true
+          type: string
         - in: body
           name: body
           description: Update user profile attributes

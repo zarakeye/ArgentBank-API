@@ -5,7 +5,6 @@ const swaggerUi = require('swagger-ui-express')
 const yaml = require('yamljs')
 const fs = require('fs')
 const path = require('path');
-// const swaggerDocs = yaml.load(path.join(__dirname, '../swagger.yaml'));
 const dbConnection = require('./database/connection')
 
 dotEnv.config()
@@ -19,16 +18,6 @@ const isProduction = () => process.env.NODE_ENV === 'production';
 // Connect to the database
 dbConnection()
 
-// // Rediriger HTTP vers HTTPS en production
-// if (isProduction()) {
-//   app.use((req, res, next) => {
-//     if (req.headers['x-forwarded-proto'] !== 'https') {
-//       return res.redirect(`https://${req.headers.host}${req.url}`);
-//     }
-//     next();
-//   });
-// }
-
 const corsOptions = {
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
@@ -40,7 +29,6 @@ app.use(cors(corsOptions))
 // Request payload middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-
 
 // Charger Swagger YAML en toute sécurité
 let swaggerDocs;
