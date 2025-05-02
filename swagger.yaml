@@ -11,6 +11,9 @@ schemes:
   - http
   - https
 
+security:
+  - Bearer: []
+
 paths:
   /user/login:
     post:
@@ -68,12 +71,12 @@ paths:
         - User Module
       summary: User Profile API
       description: API for fetching a user profile
-      parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true
-          type: string
+      # parameters:
+      #   - in: header
+      #     name: Authorization
+      #     description: Attach Bearer JWT token
+      #     required: true
+      #     type: string
       produces:
         - application/json
       responses:
@@ -93,11 +96,11 @@ paths:
       summary: User Profile API
       description: API for updating a user profile
       parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true
-          type: string
+        # - in: header
+        #   name: Authorization
+        #   description: Attach Bearer JWT token
+        #   required: true
+        #   type: string
         - in: body
           name: body
           description: Update user profile attributes
